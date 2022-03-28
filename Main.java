@@ -1,49 +1,61 @@
-package lesson1;
-
-import static lesson1.Utils.makeAnimalOlder;
+package HomeWork2;
 
 public class Main {
-    public static void main(String[] args) {
-        Cat cat1 = new Cat("Барсик", "белый", 1);
-
-        System.out.println(cat1);
-
-        Cat cat2 = new Cat("Морис", "black", 1);
-
-        Cat cat3 = new Cat("Морис", "black", 1);
-
-        System.out.println(cat2.equals(cat3));
-
-        Wolf wolf = new Wolf("Тревор", "Серый", 6);
-
-        Animal cat4 = new Cat("Морис", "red", 10);
-
-        if (cat4 instanceof Wolf) {
-            Wolf cat5 = (Wolf) cat4;
-        } else {
-            System.out.println("Не является волком!");
+    public static int arraySum(String[][] twoDimensionalArray) throws MyArraySizeException, MyArrayDataException {
+        if (twoDimensionalArray.length != 4) {
+            throw new MyArraySizeException("Длина массива != 4");
         }
 
-        Animal cat6 = new Cat("Морис", "red", 10);
-        cat6.voice();
-
-        //Создать набор бассейнов и заставить животных проплыть по ним и вывести время на заплыв
-
-        Cat catCompetitor1 = new Cat("Морис", "red", 10);
-        catCompetitor1.setSwimmingSpeed(10);
-        Wolf wolfCompetitor1 = new Wolf("Волк", "серый", 12);
-        wolfCompetitor1.setSwimmingSpeed(12);
-        Turtle turtleCompetitor = new Turtle("Черепаха", "зеленая", 100);
-        turtleCompetitor.setSwimmingSpeed(15);
-
-        Pool[] pools = {new Pool(15), new Pool(20), new Pool(35)};
-
-        for (Pool pool : pools) {
-            pool.getTimeToOvercomePool(catCompetitor1);
-            pool.getTimeToOvercomePool(wolfCompetitor1);
-            pool.getTimeToOvercomePool(turtleCompetitor);
+        for (String[] array : twoDimensionalArray) {
+            if (array.length != 4) {
+                throw new MyArraySizeException("Высота массива != 4");
+            }
         }
 
-        makeAnimalOlder(cat2);
+        int sum = 0;
+        for (int i = 0; i < twoDimensionalArray.length; i++) {
+            for (int j = 0; j < twoDimensionalArray[i].length; j++) {
+                try {
+                    sum += Integer.parseInt(twoDimensionalArray[i][j]);
+                } catch (NumberFormatException e) {
+                    throw new MyArrayDataException("Не число в элементе:" + i  + "," + j);
+                }
+            }
+        }
+        return sum;
     }
-}
+
+    public static void main(String[] args) {
+
+        String[][] successArray =
+                {{"1", "3", "5", "6"},
+                {"1", "3", "5", "6"},
+                {"1", "3", "5", "6", "5"},
+                {"1", "3", "5", "6"}};
+
+        Integer[][] array = new Integer[4][];
+        array[0] = new Integer[4];
+        array[0] = new Integer[5];
+        array[0] = new Integer[4];
+
+        try {
+            System.out.println(arraySum(successArray));
+        } catch (MyArraySizeException e) {
+            e.printStackTrace();
+        } catch (MyArrayDataException e) {
+            e.printStackTrace();
+        }
+
+        String[][] invalidDataArray =
+                {{"1", "3", "5", "6"},
+                        {"1", "3a", "5", "6"},
+                        {"1", "3", "5", "6"},
+                        {"1", "3", "5", "6"}};
+
+        try {
+            System.out.println(arraySum(invalidDataArray));
+        } catch (MyArraySizeException e) {
+            e.printStackTrace();
+        } catch (MyArrayDataException e) {
+            e.printStackTrace();
+        }
