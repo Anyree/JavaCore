@@ -1,16 +1,21 @@
-package HomeWork1;
+package HomeWork4;
+
+import java.util.HashMap;
 
 public class Main {
-
     public static void main(String[] args) {
-        Course c = new Course(new Cross(80), new Water(3), new Wall(5));
-        Team team = new Team("Heroes", new Human("Петя"), new Cat("Барск"), new Dog("Тревор"));
-         c.doIt(team);
+        String[] words = {"Apple", "Potato", "Orange", "Apple"};
 
-            System.out.println("\nWinners:");
-            team.passedTheDistance();
+        HashMap<String, Integer> uniqueWords = new HashMap<>();
 
-            System.out.println("\nResult:");
-            team.showResults();
+        for (int i = 0; i < words.length; i++) {
+            if (uniqueWords.containsKey)(words[i])) {
+                uniqueWords.put(words[i], uniqueWords.get(words[i]) + 1);
+            } else {
+                uniqueWords.put(words[i], 1);
+            }
         }
+
+        System.out.println(uniqueWords);
     }
+}
