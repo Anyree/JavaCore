@@ -1,21 +1,9 @@
-package HomeWork4;
-
-import java.util.HashMap;
+package HomeWork7;
 
 public class Main {
     public static void main(String[] args) {
-        String[] words = {"Apple", "Potato", "Orange", "Apple"};
+        UserInterfaceView userInterfaceView = new UserInterfaceView();
 
-        HashMap<String, Integer> uniqueWords = new HashMap<>();
-
-        for (int i = 0; i < words.length; i++) {
-            if (uniqueWords.containsKey)(words[i])) {
-                uniqueWords.put(words[i], uniqueWords.get(words[i]) + 1);
-            } else {
-                uniqueWords.put(words[i], 1);
-            }
-        }
-
-        System.out.println(uniqueWords);
+        userInterfaceView.runInterface();
     }
 }
